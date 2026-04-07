@@ -49,4 +49,8 @@ This plugin enforces:
 - [Implementation plan](docs/plans/2025-11-13-css-development-skill-implementation.md)
 - [Examples](docs/examples/css-development-examples.md)
 
+---
 
+If these CSS workflows saved you from fighting Tailwind, a ⭐ helps us know it's landing.
+
+Built by [2389](https://2389.ai) · Part of the [Claude Code plugin marketplace](https://github.com/2389-research/claude-plugins)
