@@ -1,6 +1,6 @@
 ---
 name: css-development:create-component
-description: This skill should be used when creating new styled components or adding new CSS classes. Triggers on "create component", "new button", "new card", "add styles", "style component", "build UI element". Guides semantic naming, Tailwind composition, dark mode support, and test coverage.
+description: Creates new styled UI components using semantic Tailwind class names, @apply composition, dark mode variants, and test coverage. Use when adding a new CSS component, creating a styled button/card/form-field, or wiring up dark mode for a new UI element.
 ---
 
 # CSS Development: Create Component
@@ -26,23 +26,11 @@ Use when:
 
 ## Pattern Reference
 
-This skill follows the patterns documented in the main `css-development` skill. Key patterns:
-
-**Semantic naming:** `.button-primary` not `.btn-blue`
-**Tailwind composition:** Use `@apply` to compose utilities
-**Dark mode:** Include `dark:` variants by default
-**Composition first:** Check if existing classes can be combined
-**Test coverage:** Static CSS tests + component rendering tests
+See the `css-development` skill for the canonical pattern reference (semantic naming, @apply, dark mode, composition, testing).
 
 ## Workflow
 
 When this skill is invoked, create a TodoWrite checklist and work through it step-by-step.
-
-### Announce Usage
-
-First, announce that you're using this skill:
-
-"I'm using the css-development:create-component skill to guide creating this new CSS component."
 
 ### Create TodoWrite Checklist
 
@@ -74,8 +62,6 @@ Creating CSS Component:
 - Existing naming patterns to follow
 - Common patterns (button variants, card styles, etc.)
 
-**Mark as in_progress** before starting, **mark as completed** when done.
-
 ---
 
 #### Step 2: Check if Composition Solves It
@@ -92,8 +78,6 @@ Creating CSS Component:
 **Decision:**
 - **If composition works:** Document the combination and SKIP remaining steps (no new class needed)
 - **If new class needed:** Continue to Step 3
-
-**Mark as completed** when decision is made.
 
 ---
 
@@ -115,8 +99,6 @@ Creating CSS Component:
 
 **Why this matters:** Helps scope complexity and dependencies
 
-**Mark as completed** when type is identified.
-
 ---
 
 #### Step 4: Choose Semantic Name
@@ -135,8 +117,6 @@ Creating CSS Component:
 - Generic: `.component`, `.item`, `.thing`
 
 **Validation:** Name should clearly indicate purpose and fit existing patterns
-
-**Mark as completed** when name is chosen.
 
 ---
 
@@ -176,8 +156,6 @@ Creating CSS Component:
 
 **Use Edit tool to add to existing file** (don't overwrite entire file)
 
-**Mark as completed** when class is written to file.
-
 ---
 
 #### Step 6: Create Markup Integration
@@ -214,8 +192,6 @@ const Button = ({ variant = 'primary', className = '', children, ...props }) => 
 ```
 
 **Where to put this:** In project documentation, README, or as a comment in the component file
-
-**Mark as completed** when markup examples are documented.
 
 ---
 
@@ -256,8 +232,6 @@ vitest styles/__tests__/components.test.ts
 ```
 
 **Expected:** Test passes (green)
-
-**Mark as completed** when test is written and passing.
 
 ---
 
@@ -301,8 +275,6 @@ vitest components/atoms/Button.test.tsx
 
 **Expected:** Test passes (green)
 
-**Mark as completed** when test is written and passing.
-
 ---
 
 #### Step 9: Document Component
@@ -320,8 +292,6 @@ vitest components/atoms/Button.test.tsx
 - Add visual examples or screenshots
 
 **Minimum requirement:** CSS comment + markup examples exist
-
-**Mark as completed** when documentation is verified.
 
 ---
 

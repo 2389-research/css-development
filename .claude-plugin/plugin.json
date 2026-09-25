@@ -1,5 +1,5 @@
 {
   "name": "css-development",
-  "description": "CSS development workflows with Tailwind composition, semantic naming, and dark mode by default",
+  "description": "Handles CSS and Tailwind development — semantic class naming, @apply composition, dark mode by default, component creation, refactoring, and CSS audits.",
   "version": "1.0.0"
 }

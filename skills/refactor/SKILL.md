@@ -1,6 +1,6 @@
 ---
 name: css-development:refactor
-description: This skill should be used when refactoring existing CSS from inline styles or utility classes to semantic patterns. Triggers on "refactor CSS", "extract styles", "consolidate CSS", "convert inline", "clean up styles", "migrate to semantic". Transforms to semantic classes with dark mode and tests.
+description: Converts inline styles or repeated Tailwind utility strings in markup to semantic component classes, and adds missing dark-mode variants. Use when markup contains repeated utility chains, inline styles, or components that lack dark: variants.
 ---
 
 # CSS Development: Refactor
@@ -27,21 +27,11 @@ Use when:
 
 ## Pattern Reference
 
-This skill refactors toward patterns documented in the main `css-development` skill:
-
-**Semantic naming:** `.button-primary` not `.btn-blue`
-**Tailwind composition:** Use `@apply` to compose utilities
-**Dark mode:** Include `dark:` variants
-**Composition first:** Reuse existing classes before creating new
-**Test coverage:** Static CSS + component rendering tests
+See the `css-development` skill for the canonical pattern reference (semantic naming, @apply, dark mode, composition, testing).
 
 ## Workflow
 
 When this skill is invoked, create a TodoWrite checklist and refactor systematically.
-
-### Announce Usage
-
-"I'm using the css-development:refactor skill to transform this CSS into semantic component patterns."
 
 ### Create TodoWrite Checklist
 
@@ -99,8 +89,6 @@ Refactoring CSS:
 - Pattern frequency (how many times repeated)
 - Current approach (inline, utilities, old CSS)
 
-**Mark as completed** when analysis is done.
-
 ---
 
 #### Step 2: Find Repeated Patterns
@@ -125,8 +113,6 @@ grep -r "rounded-lg shadow-md p-6" .
 - List file locations
 - Identify semantic purpose (is this a button? card? badge?)
 
-**Mark as completed** when patterns are cataloged.
-
 ---
 
 #### Step 3: Check Existing Components
@@ -150,8 +136,6 @@ Solution: Use .button-primary instead of creating new class
 - ✅ Compose existing classes
 - ✅ Create variant of existing class
 - ⚠️ Create new class (only if no existing solution)
-
-**Mark as completed** when reuse opportunities are identified.
 
 ---
 
@@ -188,8 +172,6 @@ Solution: Use .button-primary instead of creating new class
 
 **Use Edit tool** to add each new class to components.css
 
-**Mark as completed** when all semantic classes are created.
-
 ---
 
 #### Step 5: Include Dark Mode
@@ -210,8 +192,6 @@ Solution: Use .button-primary instead of creating new class
   @apply border-gray-200 dark:border-gray-700;
 }
 ```
-
-**Mark as completed** when dark mode coverage is added.
 
 ---
 
@@ -254,8 +234,6 @@ Solution: Use .button-primary instead of creating new class
 - Count instances replaced
 - Note any edge cases
 
-**Mark as completed** when all markup is updated.
-
 ---
 
 #### Step 7: Add Tests
@@ -288,8 +266,6 @@ it('applies button-primary class after refactor', () => {
 npm test
 ```
 
-**Mark as completed** when tests are added and passing.
-
 ---
 
 #### Step 8: Document Components
@@ -312,8 +288,6 @@ npm test
   @apply transition-all duration-200;
 }
 ```
-
-**Mark as completed** when documentation is added.
 
 ---
 
@@ -346,63 +320,19 @@ npm test
 
 **Behavior must be preserved** - refactoring should be visually neutral
 
-**Mark as completed** when behavior is verified unchanged.
-
 ---
 
 ### Completion
 
 When all checklist items are completed:
 
-1. **Generate summary** of refactoring work:
+1. **Generate a refactoring summary.** The report must include these sections (use real data from the actual files changed — never invent numbers):
 
-```markdown
-## CSS Refactoring Summary
-
-### Changes Made
-
-**Semantic classes created:**
-- `.button-primary` (extracted from 8 instances across 5 files)
-- `.card` (extracted from 12 instances across 7 files)
-- `.badge-success` (extracted from 4 instances across 3 files)
-
-**Files modified:**
-- `styles/components.css` (+45 lines, 3 new classes)
-- `components/Button.tsx` (replaced utilities with .button-primary)
-- `components/Card.tsx` (replaced utilities with .card)
-- `components/Badge.tsx` (replaced utilities with .badge-success)
-- `styles/__tests__/components.test.ts` (+12 lines, 3 new tests)
-
-**Dark mode support:**
-- ✅ All refactored classes include dark: variants
-- ✅ Tested in both light and dark mode
-
-**Test coverage:**
-- ✅ Static CSS tests added for all new classes
-- ✅ Component rendering tests updated
-- ✅ All tests passing
-
-**Behavior verification:**
-- ✅ Visual output matches original
-- ✅ No console errors
-- ✅ Interactive states work correctly
-
-### Impact
-
-**Code reduction:**
-- Removed 247 lines of repeated utility classes from markup
-- Added 45 lines of semantic CSS
-- Net reduction: 202 lines
-
-**Maintainability:**
-- Styling centralized in components.css
-- Changes now made in one place instead of many
-- Consistent component appearance
-
-**Dark mode:**
-- Added dark mode support that didn't exist before
-- All components now work in light and dark themes
-```
+   - **Semantic classes created:** each class name and how many markup instances it replaced
+   - **Files modified:** file paths, with accurate line counts added/removed
+   - **Dark mode coverage:** pass/fail — whether all new classes have `dark:` variants
+   - **Test status:** pass/fail for static CSS tests and rendering tests
+   - **Behavior verification:** result of visual/test check (confirmed unchanged, or issue found + fixed)
 
 2. **Suggest next steps:**
    - Commit the refactoring
@@ -411,5 +341,3 @@ When all checklist items are completed:
 
 3. **Offer validation:**
    "Would you like me to validate the refactored CSS using the css-development:validate skill?"
-
-**Mark as completed** when summary is presented.
