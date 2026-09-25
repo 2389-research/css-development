@@ -1,6 +1,6 @@
 ---
 name: css-development
-description: This skill should be used when working with CSS, creating components, styling elements, refactoring styles, or reviewing CSS code. Triggers on "CSS", "styles", "Tailwind", "dark mode", "component styling", "semantic class", "@apply", "stylesheet". Routes to specialized sub-skills for creation, validation, or refactoring.
+description: Handles CSS and Tailwind development — semantic class naming, @apply composition, dark mode by default, component creation, refactoring inline/utility styles, and CSS audits. Use when working with CSS, Tailwind, @apply, component styling, or dark mode. Sub-skills available: css-development:create-component, css-development:refactor, css-development:validate.
 ---
 
 # CSS Development Skill

@@ -1,6 +1,6 @@
 ---
 name: css-development:validate
-description: This skill should be used when reviewing or auditing existing CSS code for consistency with established patterns. Triggers on "review CSS", "audit styles", "check CSS", "validate stylesheet", "CSS review". Checks semantic naming, dark mode coverage, Tailwind usage, and test coverage.
+description: Audits existing CSS for semantic naming, @apply composition, dark-mode coverage, and test gaps, then reports actionable findings. Use when reviewing CSS before merging, before a refactor, or when spot-checking pattern compliance.
 ---
 
 # CSS Development: Validate
@@ -28,21 +28,11 @@ Use when:
 
 ## Pattern Reference
 
-This skill validates against patterns documented in the main `css-development` skill:
-
-**Semantic naming:** `.button-primary` not `.btn-blue`
-**Tailwind composition:** Use `@apply` to compose utilities
-**Dark mode:** Include `dark:` variants
-**Test coverage:** Static CSS + component rendering tests
-**Documentation:** Usage comments above classes
+See the `css-development` skill for the canonical pattern reference (semantic naming, @apply, dark mode, composition, testing).
 
 ## Workflow
 
 When this skill is invoked, create a TodoWrite checklist and work through validation systematically.
-
-### Announce Usage
-
-"I'm using the css-development:validate skill to review this CSS against established patterns."
 
 ### Create TodoWrite Checklist
 
@@ -77,8 +67,6 @@ Validating CSS:
 - Presence of dark mode variants
 - Documentation comments
 
-**Mark as completed** when files are loaded and understood.
-
 ---
 
 #### Step 2: Check Semantic Naming
@@ -100,8 +88,6 @@ Validating CSS:
 - Note file and line number
 - Show the problematic class name
 - Suggest semantic alternative based on usage context
-
-**Mark as completed** when all class names reviewed.
 
 ---
 
@@ -133,8 +119,6 @@ Validating CSS:
 - Show the problematic markup or CSS
 - Explain why it should use `@apply`
 - Suggest extraction to semantic class
-
-**Mark as completed** when @apply usage is reviewed.
 
 ---
 
@@ -171,8 +155,6 @@ Validating CSS:
 - Note which class is missing dark mode variants
 - Show the current CSS
 - Suggest specific `dark:` utilities to add
-
-**Mark as completed** when dark mode coverage is checked.
 
 ---
 
@@ -212,8 +194,6 @@ Validating CSS:
 - Suggest base class + composition
 - Estimate impact (how many places benefit)
 
-**Mark as completed** when composition opportunities are identified.
-
 ---
 
 #### Step 6: Verify Test Coverage
@@ -240,8 +220,6 @@ it('applies button-primary class', () => {
 - Note which test is missing (static, rendering, or both)
 - Provide test template to add
 
-**Mark as completed** when test coverage is checked.
-
 ---
 
 #### Step 7: Check Documentation
@@ -265,80 +243,20 @@ it('applies button-primary class', () => {
 - List the class name and location
 - Suggest documentation to add based on class purpose
 
-**Mark as completed** when documentation is checked.
-
 ---
 
 #### Step 8: Report Findings
 
 **Action:** Compile all findings into structured report
 
-**Report format:**
+**Report format** — the generated report must include these sections (use real file:line references from the actual files reviewed — never invent data):
 
-```markdown
-## CSS Validation Report
-
-### ✅ Good Patterns Found
-
-- `.button-primary` follows semantic naming (components.css:15)
-- Dark mode variants present on interactive elements (components.css:17-19)
-- Tests cover className application (Button.test.tsx:23)
-- Documentation comments present (components.css:14)
-
-### ⚠️ Issues Found
-
-#### Semantic Naming Issues
-
-**components.css:45** - `.btn-blue` uses utility naming
-- Current: `.btn-blue`
-- Suggestion: Rename to `.button-secondary` for consistency with `.button-primary`
-- Impact: Update 3 component files
-
-**components.css:67** - `.card-sm` uses size in name
-- Current: `.card-sm`
-- Suggestion: Extract size to utility or rename to `.card-compact` for semantic meaning
-- Impact: Update 5 usages
-
-#### Missing Dark Mode Variants
-
-**components.css:78** - `.card-header` missing dark mode
-- Current: `@apply bg-gray-100 text-gray-900`
-- Suggestion: Add `dark:bg-gray-800 dark:text-white`
-- Impact: Visual bug in dark mode
-
-**components.css:92** - `.badge` missing dark mode
-- Current: `@apply bg-indigo-100 text-indigo-800`
-- Suggestion: Add `dark:bg-indigo-900 dark:text-indigo-200`
-- Impact: Low contrast in dark mode
-
-#### Missing Test Coverage
-
-**components.css:102** - `.empty-state` has no tests
-- Missing: Both static CSS test and component rendering test
-- Suggestion: Add tests to verify class exists and renders correctly
-
-#### Missing Documentation
-
-**components.css:115** - `.session-card` lacks usage comment
-- Suggestion: Add comment explaining purpose and usage example
-
-### 📊 Summary
-
-- **Total classes reviewed:** 12
-- **Issues found:** 7
-- **Priority:** 2 high (dark mode bugs), 3 medium (naming), 2 low (docs)
-
-### 🎯 Recommended Actions
-
-1. **High priority:** Add dark mode variants to `.card-header` and `.badge` (visual bugs)
-2. **Medium priority:** Rename `.btn-blue` → `.button-secondary` for consistency
-3. **Medium priority:** Add test coverage for `.empty-state`
-4. **Low priority:** Add documentation comments to undocumented classes
-
-Would you like me to fix these issues, or would you prefer to address them manually?
-```
-
-**Mark as completed** when report is generated and presented.
+- **Good patterns found:** specific class names and file:line references confirming compliance
+- **Issues by category:** for each finding, include file:line, the problematic current state, a concrete suggestion, and severity (high = visual bug / medium = naming or missing tests / low = docs)
+  - Categories: Semantic Naming, Missing Dark Mode, @apply Usage, Test Coverage, Documentation
+- **Summary counts:** total classes reviewed, issue count by severity
+- **Recommended actions:** prioritized list (high-severity issues first, visual bugs before style issues)
+- **Next-step prompt:** ask whether to fix automatically, fix specific items, or keep the report as-is
 
 ---
 
