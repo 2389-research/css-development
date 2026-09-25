@@ -1,6 +1,6 @@
 ---
 name: css-development:refactor
-description: Converts inline styles or repeated Tailwind utility strings in markup to semantic component classes, and adds missing dark-mode variants. Use when markup contains repeated utility chains, inline styles, or components that lack dark: variants.
+description: "Converts inline styles or repeated Tailwind utility strings in markup to semantic component classes, and adds missing dark-mode variants. Use when markup contains repeated utility chains, inline styles, or components that lack dark: variants."
 ---
 
 # CSS Development: Refactor
