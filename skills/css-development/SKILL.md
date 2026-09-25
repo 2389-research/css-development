@@ -1,6 +1,6 @@
 ---
 name: css-development
-description: Handles CSS and Tailwind development — semantic class naming, @apply composition, dark mode by default, component creation, refactoring inline/utility styles, and CSS audits. Use when working with CSS, Tailwind, @apply, component styling, or dark mode. Sub-skills available: css-development:create-component, css-development:refactor, css-development:validate.
+description: "Handles CSS and Tailwind development — semantic class naming, @apply composition, dark mode by default, component creation, refactoring inline/utility styles, and CSS audits. Use when working with CSS, Tailwind, @apply, component styling, or dark mode. Sub-skills available: css-development:create-component, css-development:refactor, css-development:validate."
 ---
 
 # CSS Development Skill
